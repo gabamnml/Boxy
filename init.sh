@@ -17,9 +17,10 @@ echo "4)  Host Information"
 echo "5)  VM Information"
 echo "6)  Up VM"
 echo "7)  Shutdown VM"
-echo "8)  Create VM"
-echo "9)  Delete VM"
-echo "10) Exit"
+echo "8)  Resume VM"
+echo "9)  Create VM"
+echo "10)  Delete VM"
+echo "11) Exit"
 echo ""
 read -p "Select Option: " opcion
 case $opcion in
@@ -73,7 +74,14 @@ VBoxManage list runningvms
 echo ""
 read -p "Enter Name of VM:" closevm
 VBoxManage controlvm $closevm poweroff;;
-8)clear
+8) clear
+echo "Resume VM"
+echo ""
+VBoxManage list runningvms
+echo ""
+read -p "Enter Name of VM:" resumevm
+VBoxManage controlvm $resumevm savestate;;
+9)clear
 echo ""
 read -p "Name of new VM: " vmnew
 read -p "Size Hard Drive (MB): " hdnew
@@ -96,7 +104,7 @@ VBoxManage modifyvm $vmnew --vrde on
 VBoxManage modifyvm $vmnew --vrdemulticon on --vrdeport $puerto2
 VBoxManage modifyvm $vmnew --boot1 dvd
 VBoxManage showvminfo $vmnew | grep VRDE;;
-9)clear
+10)clear
 echo "Delete Process"
 echo ""
 VBoxManage list vms
@@ -107,7 +115,7 @@ VBoxManage unregistervm $deletevm --delete
 VBoxManage closemedium disk $deletevm.vdi --delete
 echo ""
 VBoxManage list vms;;
-10) clear
+11) clear
 echo "Bye!"
 break;;
 *) echo "Only Options 1 to 7";;
