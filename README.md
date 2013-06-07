@@ -6,15 +6,11 @@ Manage VirtualBox User Friendly via terminal
 
     git clone git@github.com:gabamnml/Boxy.git
 
-And then execute:
-
-    $ ./init.sh
-
 ## Usage
 
 Type in your command line:
 
-	$ killthemall
+	$ ./init.sh
 
 ## Contributing
 
